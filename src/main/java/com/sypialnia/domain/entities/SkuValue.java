@@ -5,15 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sku_values")
 public class SkuValue {
-  @EmbeddedId
-  private SkuValueId id;
+  @EmbeddedId private SkuValueId id;
 
   @MapsId
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumns({
-      @JoinColumn(name = "value_id", referencedColumnName = "value_id", nullable = false),
-      @JoinColumn(name = "option_id", referencedColumnName = "option_id", nullable = false),
-      @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
+    @JoinColumn(name = "value_id", referencedColumnName = "value_id", nullable = false),
+    @JoinColumn(name = "option_id", referencedColumnName = "option_id", nullable = false),
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
   })
   private OptionValue optionValues;
 
@@ -33,5 +32,5 @@ public class SkuValue {
     this.id = id;
   }
 
-  //TODO Reverse Engineering! Migrate other columns to the entity
+  // TODO Reverse Engineering! Migrate other columns to the entity
 }

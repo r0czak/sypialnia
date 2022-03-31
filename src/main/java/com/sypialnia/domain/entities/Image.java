@@ -3,24 +3,24 @@ package com.sypialnia.domain.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "options")
-public class Option {
-  @EmbeddedId private OptionId id;
+@Table(name = "images")
+public class Image {
+  @EmbeddedId private ImageId id;
 
   @MapsId("productId")
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "product_id")
   private Product product;
 
-  @Column(name = "option_name", length = 45)
-  private String optionName;
+  @Column(name = "image_name", length = 45)
+  private String imageName;
 
-  public String getOptionName() {
-    return optionName;
+  public String getImageName() {
+    return imageName;
   }
 
-  public void setOptionName(String optionName) {
-    this.optionName = optionName;
+  public void setImageName(String imageName) {
+    this.imageName = imageName;
   }
 
   public Product getProduct() {
@@ -31,11 +31,11 @@ public class Option {
     this.product = product;
   }
 
-  public OptionId getId() {
+  public ImageId getId() {
     return id;
   }
 
-  public void setId(OptionId id) {
+  public void setId(ImageId id) {
     this.id = id;
   }
 }

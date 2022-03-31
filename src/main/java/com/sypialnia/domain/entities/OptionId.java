@@ -4,15 +4,16 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class OptionId implements Serializable {
   private static final long serialVersionUID = 1201715283031233119L;
+
   @Column(name = "option_id", nullable = false)
   private Integer optionId;
+
   @Column(name = "product_id", nullable = false)
   private Integer productId;
 
@@ -42,7 +43,7 @@ public class OptionId implements Serializable {
     if (this == o) return true;
     if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
     OptionId entity = (OptionId) o;
-    return Objects.equals(this.productId, entity.productId) &&
-        Objects.equals(this.optionId, entity.optionId);
+    return Objects.equals(this.productId, entity.productId)
+        && Objects.equals(this.optionId, entity.optionId);
   }
 }

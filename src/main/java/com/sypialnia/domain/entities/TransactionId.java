@@ -4,17 +4,19 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class TransactionId implements Serializable {
   private static final long serialVersionUID = -4189444674884575754L;
+
   @Column(name = "transaction_id", nullable = false)
   private Integer transactionId;
+
   @Column(name = "order_id", nullable = false)
   private Integer orderId;
+
   @Column(name = "sku_id", nullable = false)
   private Integer skuId;
 
@@ -52,8 +54,8 @@ public class TransactionId implements Serializable {
     if (this == o) return true;
     if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
     TransactionId entity = (TransactionId) o;
-    return Objects.equals(this.orderId, entity.orderId) &&
-        Objects.equals(this.transactionId, entity.transactionId) &&
-        Objects.equals(this.skuId, entity.skuId);
+    return Objects.equals(this.orderId, entity.orderId)
+        && Objects.equals(this.transactionId, entity.transactionId)
+        && Objects.equals(this.skuId, entity.skuId);
   }
 }

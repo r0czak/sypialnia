@@ -6,8 +6,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "orders")
 public class Order {
-  @EmbeddedId
-  private OrderId id;
+  @EmbeddedId private OrderId id;
 
   @MapsId("clientId")
   @ManyToOne(fetch = FetchType.LAZY, optional = false)

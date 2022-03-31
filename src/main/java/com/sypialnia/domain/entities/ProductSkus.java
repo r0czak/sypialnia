@@ -5,8 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "product_skus")
 public class ProductSkus {
-  @EmbeddedId
-  private ProductSkusId id;
+  @EmbeddedId private ProductSkusId id;
 
   @MapsId("skuId")
   @ManyToOne(fetch = FetchType.LAZY, optional = false)

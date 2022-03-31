@@ -5,14 +5,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "option_values")
 public class OptionValue {
-  @EmbeddedId
-  private OptionValueId id;
+  @EmbeddedId private OptionValueId id;
 
   @MapsId
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumns({
-      @JoinColumn(name = "option_id", referencedColumnName = "option_id", nullable = false),
-      @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
+    @JoinColumn(name = "option_id", referencedColumnName = "option_id", nullable = false),
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
   })
   private Option options;
 

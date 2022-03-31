@@ -4,19 +4,22 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class SkuValueId implements Serializable {
   private static final long serialVersionUID = 3746808428170144127L;
+
   @Column(name = "sku_id", nullable = false)
   private Integer skuId;
+
   @Column(name = "value_id", nullable = false)
   private Integer valueId;
+
   @Column(name = "option_id", nullable = false)
   private Integer optionId;
+
   @Column(name = "product_id", nullable = false)
   private Integer productId;
 
@@ -62,9 +65,9 @@ public class SkuValueId implements Serializable {
     if (this == o) return true;
     if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
     SkuValueId entity = (SkuValueId) o;
-    return Objects.equals(this.valueId, entity.valueId) &&
-        Objects.equals(this.productId, entity.productId) &&
-        Objects.equals(this.optionId, entity.optionId) &&
-        Objects.equals(this.skuId, entity.skuId);
+    return Objects.equals(this.valueId, entity.valueId)
+        && Objects.equals(this.productId, entity.productId)
+        && Objects.equals(this.optionId, entity.optionId)
+        && Objects.equals(this.skuId, entity.skuId);
   }
 }
