@@ -1,27 +1,31 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "mydb", catalog = "")
 public class User {
-  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id", nullable = false)
-  private Integer id;
-
-  @Column(name = "username", length = 45)
+  @Id
+  @Column(name = "user_id")
+  private int userId;
+  @Basic
+  @Column(name = "username")
   private String username;
-
-  @Column(name = "password", length = 45)
+  @Basic
+  @Column(name = "password")
   private String password;
+  @Basic
+  @Column(name = "is_admin")
+  private Byte isAdmin;
 
-  public String getPassword() {
-    return password;
+  public int getUserId() {
+    return userId;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setUserId(int userId) {
+    this.userId = userId;
   }
 
   public String getUsername() {
@@ -32,11 +36,32 @@ public class User {
     this.username = username;
   }
 
-  public Integer getId() {
-    return id;
+  public String getPassword() {
+    return password;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Byte getIsAdmin() {
+    return isAdmin;
+  }
+
+  public void setIsAdmin(Byte isAdmin) {
+    this.isAdmin = isAdmin;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(isAdmin, user.isAdmin);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(userId, username, password, isAdmin);
   }
 }

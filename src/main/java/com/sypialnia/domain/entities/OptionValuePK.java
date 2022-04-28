@@ -1,36 +1,25 @@
 package com.sypialnia.domain.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "sku_values", schema = "mydb", catalog = "")
-@IdClass(SkuValuePK.class)
-public class SkuValue {
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
-  @Column(name = "sku_id")
-  private int skuId;
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
+public class OptionValuePK implements Serializable {
   @Column(name = "value_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int valueId;
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   @Column(name = "option_id")
-  private int optionId;
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int optionId;
   @Column(name = "product_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int productId;
-
-  public int getSkuId() {
-    return skuId;
-  }
-
-  public void setSkuId(int skuId) {
-    this.skuId = skuId;
-  }
 
   public int getValueId() {
     return valueId;
@@ -60,12 +49,12 @@ public class SkuValue {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    SkuValue skuValue = (SkuValue) o;
-    return skuId == skuValue.skuId && valueId == skuValue.valueId && optionId == skuValue.optionId && productId == skuValue.productId;
+    OptionValuePK that = (OptionValuePK) o;
+    return valueId == that.valueId && optionId == that.optionId && productId == that.productId;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(skuId, valueId, optionId, productId);
+    return Objects.hash(valueId, optionId, productId);
   }
 }

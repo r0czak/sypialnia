@@ -1,22 +1,51 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "option_values")
+@Table(name = "option_values", schema = "mydb", catalog = "")
+@IdClass(OptionValuePK.class)
 public class OptionValue {
-  @EmbeddedId private OptionValueId id;
-
-  @MapsId
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumns({
-    @JoinColumn(name = "option_id", referencedColumnName = "option_id", nullable = false),
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
-  })
-  private Option options;
-
-  @Column(name = "value_name", length = 45)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "value_id")
+  private int valueId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "option_id")
+  private int optionId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "product_id")
+  private int productId;
+  @Basic
+  @Column(name = "value_name")
   private String valueName;
+
+  public int getValueId() {
+    return valueId;
+  }
+
+  public void setValueId(int valueId) {
+    this.valueId = valueId;
+  }
+
+  public int getOptionId() {
+    return optionId;
+  }
+
+  public void setOptionId(int optionId) {
+    this.optionId = optionId;
+  }
+
+  public int getProductId() {
+    return productId;
+  }
+
+  public void setProductId(int productId) {
+    this.productId = productId;
+  }
 
   public String getValueName() {
     return valueName;
@@ -26,19 +55,16 @@ public class OptionValue {
     this.valueName = valueName;
   }
 
-  public Option getOptions() {
-    return options;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    OptionValue that = (OptionValue) o;
+    return valueId == that.valueId && optionId == that.optionId && productId == that.productId && Objects.equals(valueName, that.valueName);
   }
 
-  public void setOptions(Option options) {
-    this.options = options;
-  }
-
-  public OptionValueId getId() {
-    return id;
-  }
-
-  public void setId(OptionValueId id) {
-    this.id = id;
+  @Override
+  public int hashCode() {
+    return Objects.hash(valueId, optionId, productId, valueName);
   }
 }

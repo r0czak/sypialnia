@@ -1,27 +1,27 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "collection")
 public class Collection {
-  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "collection_id", nullable = false)
-  private Integer id;
-
-  @Column(name = "collection_name", length = 45)
+  @Id
+  @Column(name = "collection_id")
+  private int collectionId;
+  @Basic
+  @Column(name = "collection_name")
   private String collectionName;
-
-  @Column(name = "description", length = 2000)
+  @Basic
+  @Column(name = "description")
   private String description;
 
-  public String getDescription() {
-    return description;
+  public int getCollectionId() {
+    return collectionId;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setCollectionId(int collectionId) {
+    this.collectionId = collectionId;
   }
 
   public String getCollectionName() {
@@ -32,11 +32,24 @@ public class Collection {
     this.collectionName = collectionName;
   }
 
-  public Integer getId() {
-    return id;
+  public String getDescription() {
+    return description;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Collection that = (Collection) o;
+    return collectionId == that.collectionId && Objects.equals(collectionName, that.collectionName) && Objects.equals(description, that.description);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(collectionId, collectionName, description);
   }
 }

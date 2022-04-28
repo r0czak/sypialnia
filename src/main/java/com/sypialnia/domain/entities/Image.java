@@ -1,19 +1,31 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "images")
+@Table(name = "images", schema = "mydb", catalog = "")
+@IdClass(ImagePK.class)
 public class Image {
-  @EmbeddedId private ImageId id;
-
-  @MapsId("productId")
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "product_id")
-  private Product product;
-
-  @Column(name = "image_name", length = 45)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "image_id")
+  private int imageId;
+  @Basic
+  @Column(name = "image_name")
   private String imageName;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "product_id")
+  private int productId;
+
+  public int getImageId() {
+    return imageId;
+  }
+
+  public void setImageId(int imageId) {
+    this.imageId = imageId;
+  }
 
   public String getImageName() {
     return imageName;
@@ -23,19 +35,24 @@ public class Image {
     this.imageName = imageName;
   }
 
-  public Product getProduct() {
-    return product;
+  public int getProductId() {
+    return productId;
   }
 
-  public void setProduct(Product product) {
-    this.product = product;
+  public void setProductId(int productId) {
+    this.productId = productId;
   }
 
-  public ImageId getId() {
-    return id;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Image image = (Image) o;
+    return imageId == image.imageId && productId == image.productId && Objects.equals(imageName, image.imageName);
   }
 
-  public void setId(ImageId id) {
-    this.id = id;
+  @Override
+  public int hashCode() {
+    return Objects.hash(imageId, imageName, productId);
   }
 }

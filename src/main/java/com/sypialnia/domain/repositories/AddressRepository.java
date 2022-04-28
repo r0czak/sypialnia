@@ -1,10 +1,4 @@
 package com.sypialnia.domain.repositories;
 
-import com.sypialnia.domain.entities.Address;
-import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
-
-public interface AddressRepository extends CrudRepository<Address, Integer> {
-  List<Address> findById(int id);
+public interface AddressRepository extends org.springframework.data.jpa.repository.JpaRepository<com.sypialnia.domain.entities.Address, int> {
 }

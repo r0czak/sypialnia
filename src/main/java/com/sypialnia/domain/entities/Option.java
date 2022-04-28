@@ -1,19 +1,39 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "options")
+@Table(name = "options", schema = "mydb", catalog = "")
+@IdClass(OptionPK.class)
 public class Option {
-  @EmbeddedId private OptionId id;
-
-  @MapsId("productId")
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "product_id")
-  private Product product;
-
-  @Column(name = "option_name", length = 45)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "option_id")
+  private int optionId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "product_id")
+  private int productId;
+  @Basic
+  @Column(name = "option_name")
   private String optionName;
+
+  public int getOptionId() {
+    return optionId;
+  }
+
+  public void setOptionId(int optionId) {
+    this.optionId = optionId;
+  }
+
+  public int getProductId() {
+    return productId;
+  }
+
+  public void setProductId(int productId) {
+    this.productId = productId;
+  }
 
   public String getOptionName() {
     return optionName;
@@ -23,19 +43,16 @@ public class Option {
     this.optionName = optionName;
   }
 
-  public Product getProduct() {
-    return product;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Option option = (Option) o;
+    return optionId == option.optionId && productId == option.productId && Objects.equals(optionName, option.optionName);
   }
 
-  public void setProduct(Product product) {
-    this.product = product;
-  }
-
-  public OptionId getId() {
-    return id;
-  }
-
-  public void setId(OptionId id) {
-    this.id = id;
+  @Override
+  public int hashCode() {
+    return Objects.hash(optionId, productId, optionName);
   }
 }

@@ -1,50 +1,44 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "products")
+@Table(name = "products", schema = "mydb", catalog = "")
+@IdClass(ProductPK.class)
 public class Product {
-  @EmbeddedId private ProductId id;
-
-  @MapsId("categoryId")
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "category_id", nullable = false)
-  private Category category;
-
-  @MapsId("vendorId")
-  @OneToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "vendor_id", nullable = false)
-  private Vendor vendor;
-
-  @MapsId("collectionId")
-  @OneToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "collection_id", nullable = false)
-  private Collection collection;
-
-  @Column(name = "title", nullable = false, length = 100)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "product_id")
+  private int productId;
+  @Basic
+  @Column(name = "title")
   private String title;
-
-  @Column(name = "description", length = 500)
+  @Basic
+  @Column(name = "description")
   private String description;
-
+  @Basic
   @Column(name = "visibility")
-  private Integer visibility;
+  private Byte visibility;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "category_id")
+  private int categoryId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "vendor_id")
+  private int vendorId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "collection_id")
+  private int collectionId;
 
-  public Integer getVisibility() {
-    return visibility;
+  public int getProductId() {
+    return productId;
   }
 
-  public void setVisibility(Integer visibility) {
-    this.visibility = visibility;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
+  public void setProductId(int productId) {
+    this.productId = productId;
   }
 
   public String getTitle() {
@@ -55,35 +49,56 @@ public class Product {
     this.title = title;
   }
 
-  public Collection getCollection() {
-    return collection;
+  public String getDescription() {
+    return description;
   }
 
-  public void setCollection(Collection collection) {
-    this.collection = collection;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
-  public Vendor getVendor() {
-    return vendor;
+  public Byte getVisibility() {
+    return visibility;
   }
 
-  public void setVendor(Vendor vendor) {
-    this.vendor = vendor;
+  public void setVisibility(Byte visibility) {
+    this.visibility = visibility;
   }
 
-  public Category getCategory() {
-    return category;
+  public int getCategoryId() {
+    return categoryId;
   }
 
-  public void setCategory(Category category) {
-    this.category = category;
+  public void setCategoryId(int categoryId) {
+    this.categoryId = categoryId;
   }
 
-  public ProductId getId() {
-    return id;
+  public int getVendorId() {
+    return vendorId;
   }
 
-  public void setId(ProductId id) {
-    this.id = id;
+  public void setVendorId(int vendorId) {
+    this.vendorId = vendorId;
+  }
+
+  public int getCollectionId() {
+    return collectionId;
+  }
+
+  public void setCollectionId(int collectionId) {
+    this.collectionId = collectionId;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Product product = (Product) o;
+    return productId == product.productId && categoryId == product.categoryId && vendorId == product.vendorId && collectionId == product.collectionId && Objects.equals(title, product.title) && Objects.equals(description, product.description) && Objects.equals(visibility, product.visibility);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(productId, title, description, visibility, categoryId, vendorId, collectionId);
   }
 }
