@@ -11,37 +11,39 @@ public class OptionValuePK implements Serializable {
   @Column(name = "value_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int valueId;
+  private Integer valueId;
+
   @Column(name = "option_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int optionId;
+  private Integer optionId;
+
   @Column(name = "product_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int productId;
+  private Integer productId;
 
-  public int getValueId() {
+  public Integer getValueId() {
     return valueId;
   }
 
-  public void setValueId(int valueId) {
+  public void setValueId(Integer valueId) {
     this.valueId = valueId;
   }
 
-  public int getOptionId() {
+  public Integer getOptionId() {
     return optionId;
   }
 
-  public void setOptionId(int optionId) {
+  public void setOptionId(Integer optionId) {
     this.optionId = optionId;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 

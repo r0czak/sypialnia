@@ -10,49 +10,52 @@ public class SkuValue {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "sku_id")
-  private int skuId;
+  private Integer skuId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "value_id")
-  private int valueId;
+  private Integer valueId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "option_id")
-  private int optionId;
+  private Integer optionId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "product_id")
-  private int productId;
+  private Integer productId;
 
-  public int getSkuId() {
+  public Integer getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(int skuId) {
+  public void setSkuId(Integer skuId) {
     this.skuId = skuId;
   }
 
-  public int getValueId() {
+  public Integer getValueId() {
     return valueId;
   }
 
-  public void setValueId(int valueId) {
+  public void setValueId(Integer valueId) {
     this.valueId = valueId;
   }
 
-  public int getOptionId() {
+  public Integer getOptionId() {
     return optionId;
   }
 
-  public void setOptionId(int optionId) {
+  public void setOptionId(Integer optionId) {
     this.optionId = optionId;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
@@ -61,7 +64,10 @@ public class SkuValue {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     SkuValue skuValue = (SkuValue) o;
-    return skuId == skuValue.skuId && valueId == skuValue.valueId && optionId == skuValue.optionId && productId == skuValue.productId;
+    return skuId == skuValue.skuId
+        && valueId == skuValue.valueId
+        && optionId == skuValue.optionId
+        && productId == skuValue.productId;
   }
 
   @Override

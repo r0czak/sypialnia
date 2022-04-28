@@ -9,22 +9,25 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "user_id")
-  private int userId;
+  private Integer userId;
+
   @Basic
   @Column(name = "username")
   private String username;
+
   @Basic
   @Column(name = "password")
   private String password;
+
   @Basic
   @Column(name = "is_admin")
   private Byte isAdmin;
 
-  public int getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(int userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 
@@ -57,7 +60,10 @@ public class User {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
-    return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(isAdmin, user.isAdmin);
+    return userId == user.userId
+        && Objects.equals(username, user.username)
+        && Objects.equals(password, user.password)
+        && Objects.equals(isAdmin, user.isAdmin);
   }
 
   @Override

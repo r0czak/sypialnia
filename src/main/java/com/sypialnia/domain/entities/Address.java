@@ -4,24 +4,29 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "addresses", schema = "mydb", catalog = "")
+@Table(name = "addresses", schema = "mydb")
 public class Address {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "address_id")
-  private int addressId;
+  private Integer addressId;
+
   @Basic
   @Column(name = "city")
   private String city;
+
   @Basic
   @Column(name = "postal_code")
   private String postalCode;
+
   @Basic
   @Column(name = "street")
   private String street;
+
   @Basic
   @Column(name = "street_number")
   private String streetNumber;
+
   @Basic
   @Column(name = "apartment_number")
   private String apartmentNumber;
@@ -79,7 +84,12 @@ public class Address {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Address address = (Address) o;
-    return addressId == address.addressId && Objects.equals(city, address.city) && Objects.equals(postalCode, address.postalCode) && Objects.equals(street, address.street) && Objects.equals(streetNumber, address.streetNumber) && Objects.equals(apartmentNumber, address.apartmentNumber);
+    return addressId == address.addressId
+        && Objects.equals(city, address.city)
+        && Objects.equals(postalCode, address.postalCode)
+        && Objects.equals(street, address.street)
+        && Objects.equals(streetNumber, address.streetNumber)
+        && Objects.equals(apartmentNumber, address.apartmentNumber);
   }
 
   @Override

@@ -1,2 +1,4 @@
-package com.sypialnia.web.services;public class LoginService {
+package com.sypialnia.web.services;
+
+public class LoginService {
 }

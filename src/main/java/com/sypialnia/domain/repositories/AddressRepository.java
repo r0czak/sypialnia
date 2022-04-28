@@ -1,4 +1,7 @@
 package com.sypialnia.domain.repositories;
 
-public interface AddressRepository extends org.springframework.data.jpa.repository.JpaRepository<com.sypialnia.domain.entities.Address, int> {
+import com.sypialnia.domain.entities.Address;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AddressRepository extends JpaRepository<Address, Integer> {
 }

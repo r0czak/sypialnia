@@ -1,4 +1,10 @@
 package com.sypialnia.domain.repositories;
 
-public interface UserRepository extends org.springframework.data.jpa.repository.JpaRepository<com.sypialnia.domain.entities.User, java.lang.Integer> {
+import com.sypialnia.domain.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+  List<User> findAll();
 }

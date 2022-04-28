@@ -11,49 +11,52 @@ public class SkuValuePK implements Serializable {
   @Column(name = "sku_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int skuId;
+  private Integer skuId;
+
   @Column(name = "value_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int valueId;
+  private Integer valueId;
+
   @Column(name = "option_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int optionId;
+  private Integer optionId;
+
   @Column(name = "product_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int productId;
+  private Integer productId;
 
-  public int getSkuId() {
+  public Integer getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(int skuId) {
+  public void setSkuId(Integer skuId) {
     this.skuId = skuId;
   }
 
-  public int getValueId() {
+  public Integer getValueId() {
     return valueId;
   }
 
-  public void setValueId(int valueId) {
+  public void setValueId(Integer valueId) {
     this.valueId = valueId;
   }
 
-  public int getOptionId() {
+  public Integer getOptionId() {
     return optionId;
   }
 
-  public void setOptionId(int optionId) {
+  public void setOptionId(Integer optionId) {
     this.optionId = optionId;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
@@ -62,7 +65,10 @@ public class SkuValuePK implements Serializable {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     SkuValuePK that = (SkuValuePK) o;
-    return skuId == that.skuId && valueId == that.valueId && optionId == that.optionId && productId == that.productId;
+    return skuId == that.skuId
+        && valueId == that.valueId
+        && optionId == that.optionId
+        && productId == that.productId;
   }
 
   @Override

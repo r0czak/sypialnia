@@ -4,34 +4,36 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "options", schema = "mydb", catalog = "")
+@Table(name = "options", schema = "mydb")
 @IdClass(OptionPK.class)
 public class Option {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "option_id")
-  private int optionId;
+  private Integer optionId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "product_id")
-  private int productId;
+  private Integer productId;
+
   @Basic
   @Column(name = "option_name")
   private String optionName;
 
-  public int getOptionId() {
+  public Integer getOptionId() {
     return optionId;
   }
 
-  public void setOptionId(int optionId) {
+  public void setOptionId(Integer optionId) {
     this.optionId = optionId;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
@@ -48,7 +50,9 @@ public class Option {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Option option = (Option) o;
-    return optionId == option.optionId && productId == option.productId && Objects.equals(optionName, option.optionName);
+    return optionId == option.optionId
+        && productId == option.productId
+        && Objects.equals(optionName, option.optionName);
   }
 
   @Override

@@ -10,48 +10,51 @@ public class Transaction {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "transaction_id")
-  private int transactionId;
+  private Integer transactionId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "order_id")
-  private int orderId;
+  private Integer orderId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "sku_id")
-  private int skuId;
+  private Integer skuId;
+
   @Basic
   @Column(name = "quantity")
-  private Object quantity;
+  private Integer quantity;
 
-  public int getTransactionId() {
+  public Integer getTransactionId() {
     return transactionId;
   }
 
-  public void setTransactionId(int transactionId) {
+  public void setTransactionId(Integer transactionId) {
     this.transactionId = transactionId;
   }
 
-  public int getOrderId() {
+  public Integer getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(int orderId) {
+  public void setOrderId(Integer orderId) {
     this.orderId = orderId;
   }
 
-  public int getSkuId() {
+  public Integer getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(int skuId) {
+  public void setSkuId(Integer skuId) {
     this.skuId = skuId;
   }
 
-  public Object getQuantity() {
+  public Integer getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(Object quantity) {
+  public void setQuantity(Integer quantity) {
     this.quantity = quantity;
   }
 
@@ -60,7 +63,10 @@ public class Transaction {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Transaction that = (Transaction) o;
-    return transactionId == that.transactionId && orderId == that.orderId && skuId == that.skuId && Objects.equals(quantity, that.quantity);
+    return transactionId == that.transactionId
+        && orderId == that.orderId
+        && skuId == that.skuId
+        && quantity == that.quantity;
   }
 
   @Override

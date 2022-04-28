@@ -4,36 +4,41 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "client_info", schema = "mydb", catalog = "")
+@Table(name = "client_info", schema = "mydb")
 @IdClass(ClientInfoPK.class)
 public class ClientInfo {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "client_id")
-  private int clientId;
+  private Integer clientId;
+
   @Basic
   @Column(name = "name")
   private String name;
+
   @Basic
   @Column(name = "surname")
   private String surname;
+
   @Basic
   @Column(name = "phone")
   private String phone;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "address_id")
-  private int addressId;
+  private Integer addressId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "user_id")
-  private int userId;
+  private Integer userId;
 
-  public int getClientId() {
+  public Integer getClientId() {
     return clientId;
   }
 
-  public void setClientId(int clientId) {
+  public void setClientId(Integer clientId) {
     this.clientId = clientId;
   }
 
@@ -61,19 +66,19 @@ public class ClientInfo {
     this.phone = phone;
   }
 
-  public int getAddressId() {
+  public Integer getAddressId() {
     return addressId;
   }
 
-  public void setAddressId(int addressId) {
+  public void setAddressId(Integer addressId) {
     this.addressId = addressId;
   }
 
-  public int getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(int userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 
@@ -82,7 +87,12 @@ public class ClientInfo {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ClientInfo that = (ClientInfo) o;
-    return clientId == that.clientId && addressId == that.addressId && userId == that.userId && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(phone, that.phone);
+    return clientId == that.clientId
+        && addressId == that.addressId
+        && userId == that.userId
+        && Objects.equals(name, that.name)
+        && Objects.equals(surname, that.surname)
+        && Objects.equals(phone, that.phone);
   }
 
   @Override

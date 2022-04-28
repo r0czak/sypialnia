@@ -4,15 +4,17 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "categories", schema = "mydb", catalog = "")
+@Table(name = "categories", schema = "mydb")
 public class Categorie {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "category_id")
-  private int categoryId;
+  private Integer categoryId;
+
   @Basic
   @Column(name = "category_name")
   private String categoryName;
+
   @Basic
   @Column(name = "description")
   private String description;
@@ -46,7 +48,9 @@ public class Categorie {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Categorie categorie = (Categorie) o;
-    return categoryId == categorie.categoryId && Objects.equals(categoryName, categorie.categoryName) && Objects.equals(description, categorie.description);
+    return categoryId == categorie.categoryId
+        && Objects.equals(categoryName, categorie.categoryName)
+        && Objects.equals(description, categorie.description);
   }
 
   @Override

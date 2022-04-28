@@ -10,34 +10,40 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "product_id")
-  private int productId;
+  private Integer productId;
+
   @Basic
   @Column(name = "title")
   private String title;
+
   @Basic
   @Column(name = "description")
   private String description;
+
   @Basic
   @Column(name = "visibility")
   private Byte visibility;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "category_id")
-  private int categoryId;
+  private Integer categoryId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "vendor_id")
-  private int vendorId;
+  private Integer vendorId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "collection_id")
-  private int collectionId;
+  private Integer collectionId;
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
@@ -65,27 +71,27 @@ public class Product {
     this.visibility = visibility;
   }
 
-  public int getCategoryId() {
+  public Integer getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(int categoryId) {
+  public void setCategoryId(Integer categoryId) {
     this.categoryId = categoryId;
   }
 
-  public int getVendorId() {
+  public Integer getVendorId() {
     return vendorId;
   }
 
-  public void setVendorId(int vendorId) {
+  public void setVendorId(Integer vendorId) {
     this.vendorId = vendorId;
   }
 
-  public int getCollectionId() {
+  public Integer getCollectionId() {
     return collectionId;
   }
 
-  public void setCollectionId(int collectionId) {
+  public void setCollectionId(Integer collectionId) {
     this.collectionId = collectionId;
   }
 
@@ -94,11 +100,18 @@ public class Product {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Product product = (Product) o;
-    return productId == product.productId && categoryId == product.categoryId && vendorId == product.vendorId && collectionId == product.collectionId && Objects.equals(title, product.title) && Objects.equals(description, product.description) && Objects.equals(visibility, product.visibility);
+    return productId == product.productId
+        && categoryId == product.categoryId
+        && vendorId == product.vendorId
+        && collectionId == product.collectionId
+        && Objects.equals(title, product.title)
+        && Objects.equals(description, product.description)
+        && Objects.equals(visibility, product.visibility);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productId, title, description, visibility, categoryId, vendorId, collectionId);
+    return Objects.hash(
+        productId, title, description, visibility, categoryId, vendorId, collectionId);
   }
 }

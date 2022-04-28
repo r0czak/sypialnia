@@ -4,26 +4,28 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "images", schema = "mydb", catalog = "")
+@Table(name = "images", schema = "mydb")
 @IdClass(ImagePK.class)
 public class Image {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "image_id")
-  private int imageId;
+  private Integer imageId;
+
   @Basic
   @Column(name = "image_name")
   private String imageName;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "product_id")
-  private int productId;
+  private Integer productId;
 
-  public int getImageId() {
+  public Integer getImageId() {
     return imageId;
   }
 
-  public void setImageId(int imageId) {
+  public void setImageId(Integer imageId) {
     this.imageId = imageId;
   }
 
@@ -35,11 +37,11 @@ public class Image {
     this.imageName = imageName;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
@@ -48,7 +50,9 @@ public class Image {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Image image = (Image) o;
-    return imageId == image.imageId && productId == image.productId && Objects.equals(imageName, image.imageName);
+    return imageId == image.imageId
+        && productId == image.productId
+        && Objects.equals(imageName, image.imageName);
   }
 
   @Override

@@ -10,17 +10,20 @@ public class ProductSku {
   @Basic
   @Column(name = "sku")
   private String sku;
+
   @Basic
   @Column(name = "price")
   private double price;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "sku_id")
-  private int skuId;
+  private Integer skuId;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "product_id")
-  private int productId;
+  private Integer productId;
 
   public String getSku() {
     return sku;
@@ -38,19 +41,19 @@ public class ProductSku {
     this.price = price;
   }
 
-  public int getSkuId() {
+  public Integer getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(int skuId) {
+  public void setSkuId(Integer skuId) {
     this.skuId = skuId;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
@@ -59,7 +62,10 @@ public class ProductSku {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ProductSku that = (ProductSku) o;
-    return Double.compare(that.price, price) == 0 && skuId == that.skuId && productId == that.productId && Objects.equals(sku, that.sku);
+    return Double.compare(that.price, price) == 0
+        && skuId == that.skuId
+        && productId == that.productId
+        && Objects.equals(sku, that.sku);
   }
 
   @Override

@@ -5,32 +5,36 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "orders", schema = "mydb", catalog = "")
+@Table(name = "orders", schema = "mydb")
 @IdClass(OrderPK.class)
 public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "order_id")
-  private int orderId;
+  private Integer orderId;
+
   @Basic
   @Column(name = "order_date")
   private Date orderDate;
+
   @Basic
   @Column(name = "paid")
   private Byte paid;
+
   @Basic
   @Column(name = "price")
   private Double price;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "client_id")
-  private int clientId;
+  private Integer clientId;
 
-  public int getOrderId() {
+  public Integer getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(int orderId) {
+  public void setOrderId(Integer orderId) {
     this.orderId = orderId;
   }
 
@@ -58,11 +62,11 @@ public class Order {
     this.price = price;
   }
 
-  public int getClientId() {
+  public Integer getClientId() {
     return clientId;
   }
 
-  public void setClientId(int clientId) {
+  public void setClientId(Integer clientId) {
     this.clientId = clientId;
   }
 
@@ -71,7 +75,11 @@ public class Order {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Order order = (Order) o;
-    return orderId == order.orderId && clientId == order.clientId && Objects.equals(orderDate, order.orderDate) && Objects.equals(paid, order.paid) && Objects.equals(price, order.price);
+    return orderId == order.orderId
+        && clientId == order.clientId
+        && Objects.equals(orderDate, order.orderDate)
+        && Objects.equals(paid, order.paid)
+        && Objects.equals(price, order.price);
   }
 
   @Override

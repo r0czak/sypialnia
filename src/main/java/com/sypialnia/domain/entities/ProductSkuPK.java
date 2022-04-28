@@ -11,25 +11,26 @@ public class ProductSkuPK implements Serializable {
   @Column(name = "sku_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int skuId;
+  private Integer skuId;
+
   @Column(name = "product_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int productId;
+  private Integer productId;
 
-  public int getSkuId() {
+  public Integer getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(int skuId) {
+  public void setSkuId(Integer skuId) {
     this.skuId = skuId;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 

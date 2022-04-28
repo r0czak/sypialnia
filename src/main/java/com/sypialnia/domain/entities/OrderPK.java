@@ -11,25 +11,26 @@ public class OrderPK implements Serializable {
   @Column(name = "order_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int orderId;
+  private Integer orderId;
+
   @Column(name = "client_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int clientId;
+  private Integer clientId;
 
-  public int getOrderId() {
+  public Integer getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(int orderId) {
+  public void setOrderId(Integer orderId) {
     this.orderId = orderId;
   }
 
-  public int getClientId() {
+  public Integer getClientId() {
     return clientId;
   }
 
-  public void setClientId(int clientId) {
+  public void setClientId(Integer clientId) {
     this.clientId = clientId;
   }
 

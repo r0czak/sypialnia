@@ -8,19 +8,21 @@ public class Collection {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "collection_id")
-  private int collectionId;
+  private Integer collectionId;
+
   @Basic
   @Column(name = "collection_name")
   private String collectionName;
+
   @Basic
   @Column(name = "description")
   private String description;
 
-  public int getCollectionId() {
+  public Integer getCollectionId() {
     return collectionId;
   }
 
-  public void setCollectionId(int collectionId) {
+  public void setCollectionId(Integer collectionId) {
     this.collectionId = collectionId;
   }
 
@@ -45,7 +47,9 @@ public class Collection {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Collection that = (Collection) o;
-    return collectionId == that.collectionId && Objects.equals(collectionName, that.collectionName) && Objects.equals(description, that.description);
+    return collectionId == that.collectionId
+        && Objects.equals(collectionName, that.collectionName)
+        && Objects.equals(description, that.description);
   }
 
   @Override

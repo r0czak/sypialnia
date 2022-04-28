@@ -8,19 +8,21 @@ public class Vendors {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "vendor_id")
-  private int vendorId;
+  private Integer vendorId;
+
   @Basic
   @Column(name = "vendor_name")
   private String vendorName;
+
   @Basic
   @Column(name = "description")
   private String description;
 
-  public int getVendorId() {
+  public Integer getVendorId() {
     return vendorId;
   }
 
-  public void setVendorId(int vendorId) {
+  public void setVendorId(Integer vendorId) {
     this.vendorId = vendorId;
   }
 
@@ -45,7 +47,9 @@ public class Vendors {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Vendors vendors = (Vendors) o;
-    return vendorId == vendors.vendorId && Objects.equals(vendorName, vendors.vendorName) && Objects.equals(description, vendors.description);
+    return vendorId == vendors.vendorId
+        && Objects.equals(vendorName, vendors.vendorName)
+        && Objects.equals(description, vendors.description);
   }
 
   @Override

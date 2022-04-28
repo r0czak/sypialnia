@@ -11,25 +11,26 @@ public class ImagePK implements Serializable {
   @Column(name = "image_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int imageId;
+  private Integer imageId;
+
   @Column(name = "product_id")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int productId;
+  private Integer productId;
 
-  public int getImageId() {
+  public Integer getImageId() {
     return imageId;
   }
 
-  public void setImageId(int imageId) {
+  public void setImageId(Integer imageId) {
     this.imageId = imageId;
   }
 
-  public int getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(int productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
