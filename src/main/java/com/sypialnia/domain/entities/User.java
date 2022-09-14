@@ -1,27 +1,42 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "mydb")
 public class User {
-  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id", nullable = false)
-  private Integer id;
+  @Id
+  @Column(name = "user_id")
+  private Integer userId;
 
-  @Column(name = "username", length = 45)
+  @Basic
+  @Column(name = "username")
   private String username;
 
-  @Column(name = "password", length = 45)
+  @Basic
+  @Column(name = "password")
   private String password;
 
-  public String getPassword() {
-    return password;
+  @Basic
+  @Column(name = "email")
+  private String email;
+
+  @Basic
+  @Column(name = "is_admin")
+  private Byte isAdmin;
+
+  @Basic
+  @Column(name = "enabled")
+  private Byte enabled;
+
+  public Integer getUserId() {
+    return userId;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setUserId(Integer userId) {
+    this.userId = userId;
   }
 
   public String getUsername() {
@@ -32,11 +47,52 @@ public class User {
     this.username = username;
   }
 
-  public Integer getId() {
-    return id;
+  public String getPassword() {
+    return password;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public Byte getIsAdmin() {
+    return isAdmin;
+  }
+
+  public void setIsAdmin(Byte isAdmin) {
+    this.isAdmin = isAdmin;
+  }
+
+  public Byte getEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(Byte enabled) {
+    this.enabled = enabled;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return userId == user.userId
+        && Objects.equals(username, user.username)
+        && Objects.equals(password, user.password)
+        && Objects.equals(isAdmin, user.isAdmin)
+        && Objects.equals(email, user.email);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(userId, username, password, email, isAdmin);
   }
 }

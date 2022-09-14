@@ -1,27 +1,58 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.sql.Date;
+import java.util.Objects;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", schema = "mydb")
+@IdClass(OrderPK.class)
 public class Order {
-  @EmbeddedId
-  private OrderId id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "order_id")
+  private Integer orderId;
 
-  @MapsId("clientId")
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "client_id", nullable = false, referencedColumnName = "client_id")
-  private ClientInfo client;
+  @Basic
+  @Column(name = "order_date")
+  private Date orderDate;
 
-  @Column(name = "order_date", nullable = false)
-  private LocalDate orderDate;
-
+  @Basic
   @Column(name = "paid")
-  private Integer paid;
+  private Byte paid;
 
+  @Basic
   @Column(name = "price")
   private Double price;
+
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "client_id")
+  private Integer clientId;
+
+  public Integer getOrderId() {
+    return orderId;
+  }
+
+  public void setOrderId(Integer orderId) {
+    this.orderId = orderId;
+  }
+
+  public Date getOrderDate() {
+    return orderDate;
+  }
+
+  public void setOrderDate(Date orderDate) {
+    this.orderDate = orderDate;
+  }
+
+  public Byte getPaid() {
+    return paid;
+  }
+
+  public void setPaid(Byte paid) {
+    this.paid = paid;
+  }
 
   public Double getPrice() {
     return price;
@@ -31,35 +62,28 @@ public class Order {
     this.price = price;
   }
 
-  public Integer getPaid() {
-    return paid;
+  public Integer getClientId() {
+    return clientId;
   }
 
-  public void setPaid(Integer paid) {
-    this.paid = paid;
+  public void setClientId(Integer clientId) {
+    this.clientId = clientId;
   }
 
-  public LocalDate getOrderDate() {
-    return orderDate;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Order order = (Order) o;
+    return orderId == order.orderId
+        && clientId == order.clientId
+        && Objects.equals(orderDate, order.orderDate)
+        && Objects.equals(paid, order.paid)
+        && Objects.equals(price, order.price);
   }
 
-  public void setOrderDate(LocalDate orderDate) {
-    this.orderDate = orderDate;
-  }
-
-  public ClientInfo getClient() {
-    return client;
-  }
-
-  public void setClient(ClientInfo client) {
-    this.client = client;
-  }
-
-  public OrderId getId() {
-    return id;
-  }
-
-  public void setId(OrderId id) {
-    this.id = id;
+  @Override
+  public int hashCode() {
+    return Objects.hash(orderId, orderDate, paid, price, clientId);
   }
 }

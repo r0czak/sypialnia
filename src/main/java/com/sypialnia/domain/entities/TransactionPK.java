@@ -1,30 +1,27 @@
 package com.sypialnia.domain.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "transactions", schema = "mydb", catalog = "")
-@IdClass(TransactionPK.class)
-public class Transaction {
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
+public class TransactionPK implements Serializable {
   @Column(name = "transaction_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer transactionId;
 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   @Column(name = "order_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer orderId;
 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   @Column(name = "sku_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer skuId;
-
-  @Basic
-  @Column(name = "quantity")
-  private Integer quantity;
 
   public Integer getTransactionId() {
     return transactionId;
@@ -50,27 +47,16 @@ public class Transaction {
     this.skuId = skuId;
   }
 
-  public Integer getQuantity() {
-    return quantity;
-  }
-
-  public void setQuantity(Integer quantity) {
-    this.quantity = quantity;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Transaction that = (Transaction) o;
-    return transactionId == that.transactionId
-        && orderId == that.orderId
-        && skuId == that.skuId
-        && quantity == that.quantity;
+    TransactionPK that = (TransactionPK) o;
+    return transactionId == that.transactionId && orderId == that.orderId && skuId == that.skuId;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transactionId, orderId, skuId, quantity);
+    return Objects.hash(transactionId, orderId, skuId);
   }
 }

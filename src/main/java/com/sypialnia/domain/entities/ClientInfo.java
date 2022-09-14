@@ -1,46 +1,45 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "client_info")
+@Table(name = "client_info", schema = "mydb")
+@IdClass(ClientInfoPK.class)
 public class ClientInfo {
-  @EmbeddedId
-  private ClientInfoId id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "client_id")
+  private Integer clientId;
 
-  @MapsId("addressId")
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "address_id", nullable = false)
-  private Address address;
-
-  @MapsId("userId")
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "user_id", nullable = false)
-  private User user;
-
-  @Column(name = "name", length = 45)
+  @Basic
+  @Column(name = "name")
   private String name;
 
-  @Column(name = "surname", length = 45)
+  @Basic
+  @Column(name = "surname")
   private String surname;
 
-  @Column(name = "phone", length = 9)
+  @Basic
+  @Column(name = "phone")
   private String phone;
 
-  public String getPhone() {
-    return phone;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "address_id")
+  private Integer addressId;
+
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "user_id")
+  private Integer userId;
+
+  public Integer getClientId() {
+    return clientId;
   }
 
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-  public String getSurname() {
-    return surname;
-  }
-
-  public void setSurname(String surname) {
-    this.surname = surname;
+  public void setClientId(Integer clientId) {
+    this.clientId = clientId;
   }
 
   public String getName() {
@@ -51,27 +50,53 @@ public class ClientInfo {
     this.name = name;
   }
 
-  public User getUser() {
-    return user;
+  public String getSurname() {
+    return surname;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setSurname(String surname) {
+    this.surname = surname;
   }
 
-  public Address getAddress() {
-    return address;
+  public String getPhone() {
+    return phone;
   }
 
-  public void setAddress(Address address) {
-    this.address = address;
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 
-  public ClientInfoId getId() {
-    return id;
+  public Integer getAddressId() {
+    return addressId;
   }
 
-  public void setId(ClientInfoId id) {
-    this.id = id;
+  public void setAddressId(Integer addressId) {
+    this.addressId = addressId;
+  }
+
+  public Integer getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Integer userId) {
+    this.userId = userId;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ClientInfo that = (ClientInfo) o;
+    return clientId == that.clientId
+        && addressId == that.addressId
+        && userId == that.userId
+        && Objects.equals(name, that.name)
+        && Objects.equals(surname, that.surname)
+        && Objects.equals(phone, that.phone);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(clientId, name, surname, phone, addressId, userId);
   }
 }

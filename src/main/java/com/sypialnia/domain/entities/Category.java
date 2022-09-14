@@ -1,27 +1,30 @@
 package com.sypialnia.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "categories", schema = "mydb")
 public class Category {
-  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "category_id", nullable = false)
-  private Integer id;
+  @Id
+  @Column(name = "category_id")
+  private Integer categoryId;
 
-  @Column(name = "category_name", length = 45)
+  @Basic
+  @Column(name = "category_name")
   private String categoryName;
 
-  @Column(name = "description", length = 2000)
+  @Basic
+  @Column(name = "description")
   private String description;
 
-  public String getDescription() {
-    return description;
+  public int getCategoryId() {
+    return categoryId;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setCategoryId(int categoryId) {
+    this.categoryId = categoryId;
   }
 
   public String getCategoryName() {
@@ -32,11 +35,26 @@ public class Category {
     this.categoryName = categoryName;
   }
 
-  public Integer getId() {
-    return id;
+  public String getDescription() {
+    return description;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Category category = (Category) o;
+    return categoryId == category.categoryId
+        && Objects.equals(categoryName, category.categoryName)
+        && Objects.equals(description, category.description);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(categoryId, categoryName, description);
   }
 }

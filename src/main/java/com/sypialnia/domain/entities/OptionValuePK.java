@@ -1,30 +1,27 @@
 package com.sypialnia.domain.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "option_values", schema = "mydb")
-@IdClass(OptionValuePK.class)
-public class OptionValue {
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
+public class OptionValuePK implements Serializable {
   @Column(name = "value_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer valueId;
 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   @Column(name = "option_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer optionId;
 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   @Column(name = "product_id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer productId;
-
-  @Basic
-  @Column(name = "value_name")
-  private String valueName;
 
   public Integer getValueId() {
     return valueId;
@@ -50,27 +47,16 @@ public class OptionValue {
     this.productId = productId;
   }
 
-  public String getValueName() {
-    return valueName;
-  }
-
-  public void setValueName(String valueName) {
-    this.valueName = valueName;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    OptionValue that = (OptionValue) o;
-    return valueId == that.valueId
-        && optionId == that.optionId
-        && productId == that.productId
-        && Objects.equals(valueName, that.valueName);
+    OptionValuePK that = (OptionValuePK) o;
+    return valueId == that.valueId && optionId == that.optionId && productId == that.productId;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(valueId, optionId, productId, valueName);
+    return Objects.hash(valueId, optionId, productId);
   }
 }
