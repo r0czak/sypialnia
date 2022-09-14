@@ -1,4 +1,4 @@
-package com.sypialnia.web.services;
+package com.sypialnia.domain.web.services;
 
 import com.sypialnia.domain.entities.User;
 import org.springframework.stereotype.Service;

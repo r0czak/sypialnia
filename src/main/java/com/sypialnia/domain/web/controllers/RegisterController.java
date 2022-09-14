@@ -1,10 +1,10 @@
-package com.sypialnia.web.controllers;
+package com.sypialnia.domain.web.controllers;
 
 import com.sypialnia.domain.entities.User;
 import com.sypialnia.domain.events.RegistrationCompleteEvent;
 import com.sypialnia.domain.events.ResendVerificationTokenEvent;
-import com.sypialnia.web.services.RegisterService;
-import com.sypialnia.web.services.UserService;
+import com.sypialnia.domain.web.services.RegisterService;
+import com.sypialnia.domain.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;

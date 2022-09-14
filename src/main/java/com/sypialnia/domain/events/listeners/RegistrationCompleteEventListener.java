@@ -2,8 +2,8 @@ package com.sypialnia.domain.events.listeners;
 
 import com.sypialnia.domain.entities.User;
 import com.sypialnia.domain.events.RegistrationCompleteEvent;
-import com.sypialnia.web.services.MailService;
-import com.sypialnia.web.services.UserService;
+import com.sypialnia.domain.web.services.MailService;
+import com.sypialnia.domain.web.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
