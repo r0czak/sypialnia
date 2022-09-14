@@ -52,7 +52,9 @@ public class ClientInfoPK implements Serializable {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ClientInfoPK that = (ClientInfoPK) o;
-    return clientId == that.clientId && addressId == that.addressId && userId == that.userId;
+    return Objects.equals(clientId, that.clientId)
+        && Objects.equals(addressId, that.addressId)
+        && Objects.equals(userId, that.userId);
   }
 
   @Override

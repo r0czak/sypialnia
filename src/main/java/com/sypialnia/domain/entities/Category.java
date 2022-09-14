@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "categories", schema = "mydb")
-public class Categorie {
+public class Category {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "category_id")
@@ -47,10 +47,10 @@ public class Categorie {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Categorie categorie = (Categorie) o;
-    return categoryId == categorie.categoryId
-        && Objects.equals(categoryName, categorie.categoryName)
-        && Objects.equals(description, categorie.description);
+    Category category = (Category) o;
+    return categoryId == category.categoryId
+        && Objects.equals(categoryName, category.categoryName)
+        && Objects.equals(description, category.description);
   }
 
   @Override

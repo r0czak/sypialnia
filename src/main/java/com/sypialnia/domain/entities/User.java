@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users", schema = "mydb", catalog = "")
+@Table(name = "users", schema = "mydb")
 public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -20,8 +20,16 @@ public class User {
   private String password;
 
   @Basic
+  @Column(name = "email")
+  private String email;
+
+  @Basic
   @Column(name = "is_admin")
   private Byte isAdmin;
+
+  @Basic
+  @Column(name = "enabled")
+  private Byte enabled;
 
   public Integer getUserId() {
     return userId;
@@ -47,12 +55,28 @@ public class User {
     this.password = password;
   }
 
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
   public Byte getIsAdmin() {
     return isAdmin;
   }
 
   public void setIsAdmin(Byte isAdmin) {
     this.isAdmin = isAdmin;
+  }
+
+  public Byte getEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(Byte enabled) {
+    this.enabled = enabled;
   }
 
   @Override
@@ -63,11 +87,12 @@ public class User {
     return userId == user.userId
         && Objects.equals(username, user.username)
         && Objects.equals(password, user.password)
-        && Objects.equals(isAdmin, user.isAdmin);
+        && Objects.equals(isAdmin, user.isAdmin)
+        && Objects.equals(email, user.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, username, password, isAdmin);
+    return Objects.hash(userId, username, password, email, isAdmin);
   }
 }
