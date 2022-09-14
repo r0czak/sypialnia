@@ -1,13 +1,12 @@
-package com.sypialnia.web.controllers;
+package com.sypialnia.domain.web.controllers;
 
 import com.sypialnia.domain.entities.User;
 import com.sypialnia.domain.events.ResetPasswordEvent;
+import com.sypialnia.domain.web.services.LoginService;
 import com.sypialnia.domain.models.PasswordModel;
-import com.sypialnia.web.services.LoginService;
-import com.sypialnia.web.services.UserService;
+import com.sypialnia.domain.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;

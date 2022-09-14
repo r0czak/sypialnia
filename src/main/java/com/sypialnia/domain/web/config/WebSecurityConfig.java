@@ -1,4 +1,4 @@
-package com.sypialnia.web.config;
+package com.sypialnia.domain.web.config;
 
 // public class SecurityConfiguration extends WebSecurityAdapter {
 //  @Override
